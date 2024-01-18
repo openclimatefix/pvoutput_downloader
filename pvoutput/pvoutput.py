@@ -924,7 +924,7 @@ class PVOutput:
                     )
             else:
                 total_rows += len(timeseries)
-                _LOG.info(f'Adding timezone {timezone} to {total_rows} rows')
+                _LOG.info(f"Adding timezone {timezone} to {total_rows} rows")
                 timeseries = timeseries.tz_localize(timezone)
                 _LOG.info(
                     "system_id: %d: %d rows retrieved: %s to %s",
@@ -1049,7 +1049,7 @@ class PVOutput:
             setattr(self, param_name, header_value)
 
         self.rate_limit_reset_time = pd.Timestamp.utcfromtimestamp(self.rate_limit_reset_time)
-        self.rate_limit_reset_time = self.rate_limit_reset_time.tz_localize("utc")
+        self.rate_limit_reset_time = self.rate_limit_reset_time.tz_convert("utc")
 
         _LOG.debug("%s", self.rate_limit_info())
 
